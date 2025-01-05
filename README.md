@@ -1,6 +1,6 @@
 # 64x6 Led Code
 
-This is the code for the 64x6 LED matrix that I made. The code is written in C++ and uses the FastLED library. The code is designed to be run on an Arduino Mega 2560, but can be easily modified to run on other Arduino boards.
+This is the code for the 64x6 LED matrix stand that I made.
 
 <img src="https://i.imgur.com/1jLMyf8.png" width="500">
 
