@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from RGBMatrixEmulator import graphics
+from rgbmatrix import graphics
 
 from samplebase import SampleBase
 
