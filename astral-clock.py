@@ -90,7 +90,7 @@ class ClockDisplay(SampleBase):
                 offscreen_canvas,
                 small_font,
                 margin_left,
-                title_y + main_line_height + 8,
+                title_y + main_line_height + 4,
                 info_color,
                 date_str,
             )
@@ -101,7 +101,7 @@ class ClockDisplay(SampleBase):
                 offscreen_canvas,
                 small_font,
                 margin_left,
-                title_y + main_line_height + small_line_height + 10,
+                title_y + main_line_height + small_line_height + 6,
                 info_color,
                 day_str,
             )
@@ -112,7 +112,7 @@ class ClockDisplay(SampleBase):
                 offscreen_canvas,
                 main_font,
                 margin_left,
-                title_y + main_line_height + 2 * small_line_height + 12,
+                title_y + main_line_height + 2 * small_line_height + 14,
                 info_color,
                 time_str,
             )
