@@ -9,9 +9,6 @@ elif [[ $(uname -m) =~ ^(arm|aarch64) ]]; then
     # Raspberry Pi (production)
     echo "Running in production environment (Raspberry Pi)..."
     
-    # First stop the existing service
-    sudo systemctl stop led-clock.service
-    
     # Run with hardware settings
     sudo LED_MATRIX_ENV=production python astral-clock.py \
         --led-rows=64 \
