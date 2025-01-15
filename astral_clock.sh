@@ -13,6 +13,8 @@ elif [[ $(uname -m) =~ ^(arm|aarch64) ]]; then
     sudo LED_MATRIX_ENV=production python astral-clock.py \
         --led-rows=64 \
         --led-cols=64 \
+        --title-color=21,245,186 \
+        --info-color=21,245,186 \
         --led-no-hardware-pulse true \
         --led-slowdown-gpio=4 \
         --led-brightness=60
