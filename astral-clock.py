@@ -39,8 +39,14 @@ class ClockDisplay(SampleBase):
 
     def run(self):
         offscreen_canvas = self.matrix.CreateFrameCanvas()
-        font = graphics.Font()
-        font.LoadFont("./fonts/7x13.bdf")
+
+        # Main font for title and time
+        main_font = graphics.Font()
+        main_font.LoadFont("./fonts/7x13.bdf")
+
+        # Smaller font for date and day
+        small_font = graphics.Font()
+        small_font.LoadFont("./fonts/5x7.bdf")  # Using smaller font for date and day
 
         # Parse colors
         title_rgb = [int(x) for x in self.args.title_color.split(",")]
@@ -49,7 +55,8 @@ class ClockDisplay(SampleBase):
         info_color = graphics.Color(*info_rgb)
 
         # Vertical spacing
-        line_height = 13  # Based on font size 7x13
+        main_line_height = 13  # Based on font size 7x13
+        small_line_height = 7  # Based on font size 5x7
         margin_left = 2
         title_text = "Astral"
 
@@ -58,38 +65,38 @@ class ClockDisplay(SampleBase):
             now = datetime.now()
 
             # Line 1: "Astral" centered
-            title_x = self.get_center_position(title_text, font)
-            title_y = line_height
+            title_x = self.get_center_position(title_text, main_font)
+            title_y = main_line_height
             graphics.DrawText(
-                offscreen_canvas, font, title_x, title_y, title_color, title_text
+                offscreen_canvas, main_font, title_x, title_y, title_color, title_text
             )
 
             # Line 2: Underline
             title_width = graphics.DrawText(
-                offscreen_canvas, font, 0, 0, title_color, title_text
+                offscreen_canvas, main_font, 0, 0, title_color, title_text
             )
             self.draw_underline(
                 offscreen_canvas, title_x, title_y + 2, title_width, title_color
             )
 
-            # Line 3: Date (dd-mm-yyyy)
+            # Line 3: Date (dd-mm-yyyy) with smaller font
             date_str = now.strftime("%d-%m-%Y")
             graphics.DrawText(
                 offscreen_canvas,
-                font,
+                small_font,
                 margin_left,
-                title_y + line_height + 8,
+                title_y + main_line_height + 8,
                 info_color,
                 date_str,
             )
 
-            # Line 4: Day name
+            # Line 4: Day name with smaller font
             day_str = now.strftime("%A")
             graphics.DrawText(
                 offscreen_canvas,
-                font,
+                small_font,
                 margin_left,
-                title_y + 2 * line_height + 8,
+                title_y + main_line_height + small_line_height + 10,
                 info_color,
                 day_str,
             )
@@ -98,9 +105,9 @@ class ClockDisplay(SampleBase):
             time_str = now.strftime("%I:%M:%S %p")
             graphics.DrawText(
                 offscreen_canvas,
-                font,
+                main_font,
                 margin_left,
-                title_y + 3 * line_height + 8,
+                title_y + main_line_height + 2 * small_line_height + 14,
                 info_color,
                 time_str,
             )
