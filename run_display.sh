@@ -16,7 +16,7 @@ elif [[ $(uname -m) =~ ^(arm|aarch64) ]]; then
     sudo LED_MATRIX_ENV=production python my_first_display.py \
         --led-rows=64 \
         --led-cols=64 \
-        --led-no-hardware-pulse \
+        --led-no-hardware-pulse true \
         --led-slowdown-gpio=4 \
         --led-brightness=60
 else
