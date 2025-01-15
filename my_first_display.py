@@ -1,5 +1,10 @@
 #!/usr/bin/env python
-from rgbmatrix import graphics
+import os
+
+if os.environ.get("LED_MATRIX_ENV") == "development":
+    from RGBMatrixEmulator import graphics
+else:
+    from rgbmatrix import graphics
 
 from samplebase import SampleBase
 
