@@ -49,7 +49,7 @@ class ClockDisplay(SampleBase):
 
         # Smaller font for date and day
         small_font = graphics.Font()
-        small_font.LoadFont("./fonts/7x13.bdf")
+        small_font.LoadFont("./fonts/5x7.bdf")
 
         # Parse colors
         title_rgb = [int(x) for x in self.args.title_color.split(",")]
