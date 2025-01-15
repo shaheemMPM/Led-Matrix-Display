@@ -27,9 +27,10 @@ class ClockDisplay(SampleBase):
             default="0,255,0",
         )  # Default green
 
-    def get_center_position(self, text, font):
+    def get_center_position(self, text, font, dummy_canvas):
+        # Use the provided canvas instead of creating a new one
         text_width = graphics.DrawText(
-            self.matrix.CreateFrameCanvas(), font, 0, 0, graphics.Color(0, 0, 0), text
+            dummy_canvas, font, 0, 0, graphics.Color(0, 0, 0), text
         )
         return max(0, (self.matrix.width - text_width) // 2)
 
@@ -38,7 +39,9 @@ class ClockDisplay(SampleBase):
             canvas.SetPixel(x + i, y, color.red, color.green, color.blue)
 
     def run(self):
+        # Create canvases for double buffering
         offscreen_canvas = self.matrix.CreateFrameCanvas()
+        dummy_canvas = self.matrix.CreateFrameCanvas()  # For text width calculations
 
         # Main font for title and time
         main_font = graphics.Font()
@@ -46,7 +49,7 @@ class ClockDisplay(SampleBase):
 
         # Smaller font for date and day
         small_font = graphics.Font()
-        small_font.LoadFont("./fonts/5x7.bdf")  # Using smaller font for date and day
+        small_font.LoadFont("./fonts/7x13.bdf")
 
         # Parse colors
         title_rgb = [int(x) for x in self.args.title_color.split(",")]
@@ -60,21 +63,23 @@ class ClockDisplay(SampleBase):
         margin_left = 2
         title_text = "Astral"
 
+        # Pre-calculate title position and width (since it's static)
+        title_x = self.get_center_position(title_text, main_font, dummy_canvas)
+        title_width = graphics.DrawText(
+            dummy_canvas, main_font, 0, 0, title_color, title_text
+        )
+
         while True:
             offscreen_canvas.Clear()
             now = datetime.now()
 
             # Line 1: "Astral" centered
-            title_x = self.get_center_position(title_text, main_font)
             title_y = main_line_height
             graphics.DrawText(
                 offscreen_canvas, main_font, title_x, title_y, title_color, title_text
             )
 
             # Line 2: Underline
-            title_width = graphics.DrawText(
-                offscreen_canvas, main_font, 0, 0, title_color, title_text
-            )
             self.draw_underline(
                 offscreen_canvas, title_x, title_y + 2, title_width, title_color
             )
