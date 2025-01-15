@@ -49,7 +49,7 @@ class ClockDisplay(SampleBase):
 
         # Smaller font for date and day
         small_font = graphics.Font()
-        small_font.LoadFont("./fonts/5x7.bdf")
+        small_font.LoadFont("./fonts/6x10.bdf")
 
         # Parse colors
         title_rgb = [int(x) for x in self.args.title_color.split(",")]
@@ -59,7 +59,7 @@ class ClockDisplay(SampleBase):
 
         # Vertical spacing
         main_line_height = 13  # Based on font size 7x13
-        small_line_height = 7  # Based on font size 5x7
+        small_line_height = 10  # Based on font size 6x10
         margin_left = 2
         title_text = "Astral"
 
@@ -112,7 +112,7 @@ class ClockDisplay(SampleBase):
                 offscreen_canvas,
                 main_font,
                 margin_left,
-                title_y + main_line_height + 2 * small_line_height + 14,
+                title_y + main_line_height + 2 * small_line_height + 12,
                 info_color,
                 time_str,
             )
