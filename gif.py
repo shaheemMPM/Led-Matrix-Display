@@ -2,7 +2,7 @@
 import sys
 
 from PIL import Image
-from RGBMatrixEmulator import RGBMatrix, RGBMatrixOptions
+from rgbmatrix import RGBMatrix, RGBMatrixOptions
 
 if len(sys.argv) < 2:
     sys.exit("Require a gif argument")
