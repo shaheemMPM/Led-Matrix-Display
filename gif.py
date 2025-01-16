@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import sys
+import time
 
 from PIL import Image
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
@@ -53,6 +54,7 @@ try:
     cur_frame = 0
     while True:
         matrix.SwapOnVSync(canvases[cur_frame])
+        time.sleep(0.1)
         if cur_frame == num_frames - 1:
             cur_frame = 0
         else:
