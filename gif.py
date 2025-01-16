@@ -24,6 +24,9 @@ options.cols = 64
 options.chain_length = 1
 options.parallel = 1
 options.hardware_mapping = "regular"  # If you have an Adafruit HAT: 'adafruit-hat'
+options.no_hardware_pulse = True  # Added this line to fix the sound module conflict
+options.brightness = 60  # Added recommended brightness
+options.gpio_slowdown = 4  # Added recommended GPIO slowdown
 
 matrix = RGBMatrix(options=options)
 
